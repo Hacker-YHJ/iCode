@@ -1,0 +1,36 @@
+extends template/_default.pug
+include template/_mixins.pug
+
+block append css
+block append hjs
+  +ex_js('https://use.fontawesome.com/b23fbd50a7.js')
+  +js('main.js')
+block contents
+  main.smooth-resize
+    .container
+      code.
+        (⁠~⁠~⁠(⁠.⁠(⁠)⁠*⁠)⁠)​.⁠(⁠)⁠.⁠&lt;⁠=⁠_⁠.⁠(⁠-​.⁠)⁠.⁠(⁠'⁠'⁠)⁠+⁠@⁠.​'⁠'⁠,⁠"⁠#⁠{⁠}⁠"⁠:⁠=​&gt;⁠@⁠.⁠=⁠"⁠"⁠"⁠*⁠:⁠:​{⁠:⁠#⁠{⁠@⁠}⁠!⁠;⁠}⁠.​{⁠:⁠#⁠{⁠@⁠}⁠!⁠;⁠}⁠.​:⁠:⁠,⁠.⁠:⁠:⁠{⁠-⁠:⁠#​{⁠@⁠}⁠!⁠;⁠}⁠.⁠{⁠-⁠:​#⁠{⁠@⁠}⁠!⁠;⁠}⁠.⁠{⁠:
+      .control.no-print
+        #btnFColor.btn.smooth-color
+          i.fa.fa-circle(aria-hidden='true')
+        #btnBColor.btn.smooth-color
+          i.fa.fa-circle-o(aria-hidden='true')
+        #btnUpload.btn.smooth-color
+          i.fa.fa-cloud-upload(aria-hidden='true')
+        #btnDownload.btn.smooth-color
+          i.fa.fa-download(aria-hidden='true')
+      .left.corner
+        p.desc I am&nbsp;
+          span.name(contenteditable=true) Thomas
+          | .
+        p.desc I write&nbsp;
+          span.name(contenteditable=true) CoffeeScript
+          | .
+      .right.corner
+        p#txtDay.desc
+        p#txtMonth.desc
+        p#txtYear.desc
+  .hidden
+    input#inputFile(type='file')
+    input#inputFColor(type='color')
+    input#inputBColor(type='color')

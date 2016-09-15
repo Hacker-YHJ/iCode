@@ -1,0 +1,88 @@
+@import 'nib'
+global-reset()
+
+@font-face
+  font-family: 'Share Tech Mono'
+  font-style: normal
+  src url('fonts/Share-TechMono.otf')
+
+body, html
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif
+  -webkit-font-smoothing: subpixel-antialiased
+  height: 100%
+  width: 100%
+  background-color: #FAFAFA
+
+.hidden
+  visibility: hidden
+
+.smooth-resize
+  transition: height .4s ease-out, width .4s ease-out
+
+.smooth-color
+  transition: background-color .4s ease-out, color .4s ease-out
+
+.btn
+  border-radius: 1rem
+  text-align: center
+  height: 5rem
+  width: 5rem
+  line-height: 5rem
+  cursor: pointer
+  color: black
+
+  &:hover
+    color: white
+    background-color: black
+
+main
+  position: absolute
+  background-color: white
+  color: black
+  margin: 0
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+
+  .container
+    position: absolute
+    padding: 3rem 0 0 4rem
+    width: calc(100% - 4rem)
+    height: calc(100% - 3rem)
+
+p.desc
+  font-weight: bold
+  letter-spacing: .2rem
+  line-height: 2rem
+  white-space: no-wrap
+  font-size: 2rem
+
+.left p.desc
+  font-weight: normal
+  font-size: 3rem
+  line-height: 3rem
+
+
+.control
+  position: absolute
+  display: flex
+  bottom: 12rem
+  font-size: 4rem
+
+.corner
+  position: absolute
+  bottom: 3rem
+
+.right
+  right: 4rem
+  text-align: right
+
+
+code
+  display: inline-block
+  font-family: 'Share Tech Mono', monospace
+  font-weight: bold
+  font-size: 4.95195rem
+  // zero width space also count
+  letter-spacing: 2rem
+  line-height: 7.2rem
