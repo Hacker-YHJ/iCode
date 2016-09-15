@@ -6,6 +6,13 @@ global-reset()
   font-style: normal
   src url('fonts/Share-TechMono.otf')
 
+a,
+a:visited,
+a:active,
+a:link
+  text-decoration: underline
+  color: inherit
+
 body, html
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif
   -webkit-font-smoothing: subpixel-antialiased
@@ -23,11 +30,11 @@ body, html
   transition: background-color .4s ease-out, color .4s ease-out
 
 .btn
-  border-radius: 1rem
+  border-radius: .25em
   text-align: center
-  height: 5rem
-  width: 5rem
-  line-height: 5rem
+  height: 1.2em
+  width: 1.2em
+  line-height: 1.2em
   cursor: pointer
   color: currentColor
 
@@ -42,35 +49,34 @@ main
 
   .container
     position: absolute
-    padding: 3rem 0 0 4rem
-    width: calc(100% - 4rem)
-    height: calc(100% - 3rem)
+    padding: 3em 0 0 4em
+    width: calc(100% - 4em)
+    height: calc(100% - 3em)
 
 p.desc
   font-weight: bold
-  letter-spacing: .2rem
-  line-height: 2rem
+  letter-spacing: .1em
+  line-height: 1em
   white-space: no-wrap
-  font-size: 2rem
+  font-size: 2em
 
 .left p.desc
   font-weight: normal
-  font-size: 3rem
-  line-height: 3rem
+  font-size: 3em
 
 
 .control
   position: absolute
   display: flex
-  bottom: 12rem
-  font-size: 4rem
+  bottom: 3em
+  font-size: 4em
 
 .corner
   position: absolute
-  bottom: 3rem
+  bottom: 3em
 
 .right
-  right: 4rem
+  right: 4em
   text-align: right
 
 
@@ -78,7 +84,12 @@ code
   display: inline-block
   font-family: 'Share Tech Mono', monospace
   font-weight: bold
-  font-size: 4.95195rem
   // zero width space also count
-  letter-spacing: 2rem
-  line-height: 7.2rem
+  letter-spacing: .40388em
+  line-height: 1.45398em
+  font-size: 4.95195em
+
+footer
+  position: absolute
+  font-size: 1em
+  bottom: 1em

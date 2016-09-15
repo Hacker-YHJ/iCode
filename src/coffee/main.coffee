@@ -13,6 +13,7 @@ $btnUpload = null
 $btnDownload = null
 $btnFColor = null
 $btnBColor = null
+$btnFBShare = null
 $inputFColor = null
 $inputBColor = null
 $inputFile = null
@@ -32,6 +33,7 @@ domready ->
   $btnDownload = $id 'btnDownload'
   $btnFColor = $id 'btnFColor'
   $btnBColor = $id 'btnBColor'
+  $btnFBShare = $id 'btnFBShare'
   $inputFile = $id 'inputFile'
   $inputFColor = $id 'inputFColor'
   $inputBColor = $id 'inputBColor'
@@ -51,6 +53,7 @@ domready ->
   $btnDownload.addEventListener 'click', onDownloadClick
   $btnFColor.addEventListener 'click', onFColorClick
   $btnBColor.addEventListener 'click', onBColorClick
+  $btnFBShare.addEventListener 'click', onFBShareClick
   $inputFile.addEventListener 'change', onInputChange
   $inputFColor.addEventListener 'change', onInputFColorChange
   $inputBColor.addEventListener 'change', onInputBColorChange
@@ -66,37 +69,37 @@ onResize = ->
   if window.innerHeight / window.innerWidth > ratio
     mainHeight = window.innerWidth * ratio * .95
     mainWidth = window.innerWidth * .95
-    document.documentElement.style.fontSize = "#{.95 * ratio}vw"
+    $main.style.fontSize = "#{.95 * ratio}vw"
   else
     mainHeight = window.innerHeight * .95
     mainWidth = window.innerHeight / ratio * .95
-    document.documentElement.style.fontSize = '0.95vh'
+    $main.style.fontSize = '0.95vh'
   $main.style.height = "#{mainHeight}px"
   $main.style.width = "#{mainWidth}px"
 
-
-onDownloadClick = ->
+createImg = ->
   config =
     filter: (node) ->
       !node?.classList?.contains('no-print')
-    height: mainHeight
-    width: mainWidth
+    height: 2 * mainHeight
+    width: 2 * mainWidth
     style:
       position: 'absolute'
       margin: 0
       top: '50%'
       left: '50%'
-      transform: 'translate(-50%, -50%)'
+      transform: 'translate(-25%, -25%) scale(2)'
       webkitFontSmoothing: 'subpixel-antialiased'
-      fontSize: '2vh'
 
   domtoimage.toPng $main, config
-    .then (dataUrl) ->
-      link = document.createElement 'a'
-      link.download = 'iCode-poster.png'
-      link.href = dataUrl
-      link.click()
-    .catch (err) -> throw err
+
+onDownloadClick = ->
+  createImg().then (dataUrl) ->
+    link = document.createElement 'a'
+    link.download = 'iCode-poster.png'
+    link.href = dataUrl
+    link.click()
+  .catch (err) -> throw err
 
 onInputChange = (input) ->
   file = input.target.files[0]
@@ -133,3 +136,12 @@ onBtnMouseEnter = ->
 onBtnMouseLeave = ->
   @style.removeProperty 'color'
   @style.removeProperty 'background-color'
+
+onFBShareClick = ->
+  createImg().then (dataUrl) ->
+    config =
+      method: 'share'
+      href: 'http://thomas-yang.me/projects/iCode'
+    FB.ui config, (res) ->
+      console.log res
+  .catch (err) -> throw err

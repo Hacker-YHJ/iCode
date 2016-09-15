@@ -19,6 +19,8 @@ block contents
           i.fa.fa-cloud-upload(aria-hidden='true')
         #btnDownload.btn.smooth-color
           i.fa.fa-download(aria-hidden='true')
+        #btnFBShare.btn.smooth-color
+          i.fa.fa-facebook(aria-hidden='true')
       .left.corner.smooth-color
         p.desc I am&nbsp;
           span.name(contenteditable=true) Thomas
@@ -30,7 +32,29 @@ block contents
         p#txtDay.desc
         p#txtMonth.desc
         p#txtYear.desc
+      footer.smooth-color
+        |Made with &#9825; by&nbsp;
+        a(href='http://thomas-yang.me/') Thomas Yang.
+        |&nbsp;Inspired by&nbsp;
+        a(href='http://ruleofthirds.de/visualizing-code/') Bastian Greshake
   .hidden
     input#inputFile(type='file')
     input#inputFColor(type='color')
     input#inputBColor(type='color')
+    img#fbImg(src='')
+  script.
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '1654094294902205',
+        xfbml      : true,
+        version    : 'v2.7'
+      });
+    };
+
+    (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
