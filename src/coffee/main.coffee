@@ -55,6 +55,10 @@ domready ->
   $inputFColor.addEventListener 'change', onInputFColorChange
   $inputBColor.addEventListener 'change', onInputBColorChange
 
+  document.querySelectorAll('.btn').forEach (elem) ->
+    elem.addEventListener 'mouseenter', onBtnMouseEnter
+    elem.addEventListener 'mouseleave', onBtnMouseLeave
+
   window.addEventListener 'resize', onResize
   onResize()
 
@@ -115,8 +119,17 @@ onInputChange = (input) ->
 
   reader.readAsText(file)
 
-onInputFColorChange = (fColor) ->
-  console.info fColor
+onInputFColorChange = (e) ->
+  console.log e.target.value
+  $main.style.color = e.target.value
 
-onInputBColorChange = (bColor) ->
-  console.info bColor
+onInputBColorChange = (e) ->
+  $main.style.backgroundColor = e.target.value
+
+onBtnMouseEnter = ->
+  @style.color = $main.style.backgroundColor
+  @style.backgroundColor = $main.style.color
+
+onBtnMouseLeave = ->
+  @style.removeProperty 'color'
+  @style.removeProperty 'background-color'

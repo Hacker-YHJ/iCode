@@ -6,9 +6,9 @@ block append hjs
   +ex_js('https://use.fontawesome.com/b23fbd50a7.js')
   +js('main.js')
 block contents
-  main.smooth-resize
+  main.smooth-resize(style='color: black; background-color: white;')
     .container
-      code.
+      code.smooth-color.
         (⁠~⁠~⁠(⁠.⁠(⁠)⁠*⁠)⁠)​.⁠(⁠)⁠.⁠&lt;⁠=⁠_⁠.⁠(⁠-​.⁠)⁠.⁠(⁠'⁠'⁠)⁠+⁠@⁠.​'⁠'⁠,⁠"⁠#⁠{⁠}⁠"⁠:⁠=​&gt;⁠@⁠.⁠=⁠"⁠"⁠"⁠*⁠:⁠:​{⁠:⁠#⁠{⁠@⁠}⁠!⁠;⁠}⁠.​{⁠:⁠#⁠{⁠@⁠}⁠!⁠;⁠}⁠.​:⁠:⁠,⁠.⁠:⁠:⁠{⁠-⁠:⁠#​{⁠@⁠}⁠!⁠;⁠}⁠.⁠{⁠-⁠:​#⁠{⁠@⁠}⁠!⁠;⁠}⁠.⁠{⁠:
       .control.no-print
         #btnFColor.btn.smooth-color
@@ -19,14 +19,14 @@ block contents
           i.fa.fa-cloud-upload(aria-hidden='true')
         #btnDownload.btn.smooth-color
           i.fa.fa-download(aria-hidden='true')
-      .left.corner
+      .left.corner.smooth-color
         p.desc I am&nbsp;
           span.name(contenteditable=true) Thomas
           | .
         p.desc I write&nbsp;
           span.name(contenteditable=true) CoffeeScript
           | .
-      .right.corner
+      .right.corner.smooth-color
         p#txtDay.desc
         p#txtMonth.desc
         p#txtYear.desc
