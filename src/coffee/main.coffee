@@ -2,6 +2,14 @@ require '../stylus/main'
 domready = require 'domready'
 punctuationize = require 'punctuationize'
 domtoimage = require 'dom-to-image'
+firebase = require 'firebase'
+
+FIREBASE_CONFIG =
+  apiKey: 'AIzaSyBDdcex1yD9PgVg1V7z4B20kvEewahTU54'
+  authDomain: 'icodepic.firebaseapp.com'
+  storageBucket: 'firebase-icodepic.appspot.com'
+firebase.initializeApp FIREBASE_CONFIG
+storageRef = firebase.storage().ref()
 
 $id = document.getElementById.bind document
 $tag = document.getElementsByTagName.bind document
@@ -77,7 +85,7 @@ onResize = ->
   $main.style.height = "#{mainHeight}px"
   $main.style.width = "#{mainWidth}px"
 
-createImg = ->
+createImgConfig = ->
   config =
     filter: (node) ->
       !node?.classList?.contains('no-print')
@@ -91,10 +99,9 @@ createImg = ->
       transform: 'translate(-25%, -25%) scale(2)'
       webkitFontSmoothing: 'subpixel-antialiased'
 
-  domtoimage.toPng $main, config
-
 onDownloadClick = ->
-  createImg().then (dataUrl) ->
+  config = createImgConfig()
+  domtoimage.toPng($main, config).then (dataUrl) ->
     link = document.createElement 'a'
     link.download = 'iCode-poster.png'
     link.href = dataUrl
@@ -138,10 +145,24 @@ onBtnMouseLeave = ->
   @style.removeProperty 'background-color'
 
 onFBShareClick = ->
-  createImg().then (dataUrl) ->
-    config =
-      method: 'share'
-      href: 'http://thomas-yang.me/projects/iCode'
-    FB.ui config, (res) ->
-      console.log res
+  [$name, $lang] = document.querySelectorAll 'span'
+  picRef = storageRef.child "#{$name.textContent}-#{$lang.textContent}-#{Date.now()}.png"
+  config = createImgConfig()
+  domtoimage.toBlob($main, config)
+  .then (blob) ->
+    picRef.put blob
+  .then (snapshot) ->
+    picRef.getDownloadURL()
+  .then (url) ->
+    fbShareConfig =
+      method: 'feed'
+      link: 'http://thomas-yang.me/projects/iCode'
+      picture: url
+      name: 'Minimalist poster for my source code.'
+      caption: 'iCode'
+      description: "I am #{$name.textContent}. I write #{$lang.textContent}."
+    FB.ui fbShareConfig, (res) ->
+      # TODO
+      # thanks for sharing
+      res
   .catch (err) -> throw err

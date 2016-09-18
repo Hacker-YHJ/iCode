@@ -1,6 +1,10 @@
 extends template/_default.pug
 include template/_mixins.pug
 
+block append meta
+  meta(property="og:image" content='https://firebasestorage.googleapis.com/v0/b/firebase-icodepic.appspot.com/o/test.png?alt=media&token=a00bd2fe-0cab-435e-bd73-3547d7f68461')
+  meta(property='og:url' content='http://thomas-yang.me/projects/iCode')
+
 block append css
 block append hjs
   +ex_js('https://use.fontawesome.com/b23fbd50a7.js')
@@ -11,6 +15,8 @@ block contents
       code.smooth-color.
         (⁠~⁠~⁠(⁠.⁠(⁠)⁠*⁠)⁠)​.⁠(⁠)⁠.⁠&lt;⁠=⁠_⁠.⁠(⁠-​.⁠)⁠.⁠(⁠'⁠'⁠)⁠+⁠@⁠.​'⁠'⁠,⁠"⁠#⁠{⁠}⁠"⁠:⁠=​&gt;⁠@⁠.⁠=⁠"⁠"⁠"⁠*⁠:⁠:​{⁠:⁠#⁠{⁠@⁠}⁠!⁠;⁠}⁠.​{⁠:⁠#⁠{⁠@⁠}⁠!⁠;⁠}⁠.​:⁠:⁠,⁠.⁠:⁠:⁠{⁠-⁠:⁠#​{⁠@⁠}⁠!⁠;⁠}⁠.⁠{⁠-⁠:​#⁠{⁠@⁠}⁠!⁠;⁠}⁠.⁠{⁠:
       .control.no-print
+        #btnQuestion.btn.smooth-color
+          i.fa.fa-question(aria-hidden='true')
         #btnFColor.btn.smooth-color
           i.fa.fa-circle(aria-hidden='true')
         #btnBColor.btn.smooth-color
@@ -40,8 +46,7 @@ block contents
   .hidden
     input#inputFile(type='file')
     input#inputFColor(type='color')
-    input#inputBColor(type='color')
-    img#fbImg(src='')
+    input#inputBColor(type='color' value='#FFFFFF')
   script.
     window.fbAsyncInit = function() {
       FB.init({

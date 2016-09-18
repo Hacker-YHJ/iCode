@@ -1,6 +1,7 @@
 include _mixins
 
-- var meta_title = 'iCode - Generate cool posters'
+- var meta_title = 'iCode - Source code poster generator'
+- var meta_desc = 'iCode is a minimalist poster generator using your own source code. It wipes out all contents except punctuation marks.'
 - var img_favicon = 'favicon.png'
 
 doctype html
@@ -8,10 +9,13 @@ html(lang='en')
   head
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(charset="utf-8")
-    meta(name='description' content='A punctuation-marke-only poster generator.')
-    meta(name='keywords' content='iCode poster code')
+    meta(name='description' content=meta_desc)
+    meta(name='keywords' content='iCode,source code,poster,generator,minimalist poster,punctuation,punctuation mark')
     meta(name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0')
     meta(name='apple-mobile-web-app-capable' content='yes')
+    meta(property='og:title' content=meta_title)
+    meta(property='og:description' content=meta_desc)
+    block meta
 
     title= meta_title
     link(href=img_favicon, rel='shortcut icon', type='image/vnd.microsoft.icon')
