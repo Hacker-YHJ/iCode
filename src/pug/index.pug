@@ -16,25 +16,25 @@ block contents
         (⁠~⁠~⁠(⁠.⁠(⁠)⁠*⁠)⁠)​.⁠(⁠)⁠.⁠&lt;⁠=⁠_⁠.⁠(⁠-​.⁠)⁠.⁠(⁠'⁠'⁠)⁠+⁠@⁠.​'⁠'⁠,⁠"⁠#⁠{⁠}⁠"⁠:⁠=​&gt;⁠@⁠.⁠=⁠"⁠"⁠"⁠*⁠:⁠:​{⁠:⁠#⁠{⁠@⁠}⁠!⁠;⁠}⁠.​{⁠:⁠#⁠{⁠@⁠}⁠!⁠;⁠}⁠.​:⁠:⁠,⁠.⁠:⁠:⁠{⁠-⁠:⁠#​{⁠@⁠}⁠!⁠;⁠}⁠.⁠{⁠-⁠:​#⁠{⁠@⁠}⁠!⁠;⁠}⁠.⁠{⁠:
       .control.no-print
         #btnQuestion.btn.smooth-color
-          i.fa.fa-question(aria-hidden='true')
+          i.fa.fa-question(aria-hidden='true', data-label='open label')
         #btnFColor.btn.smooth-color
-          i.fa.fa-circle(aria-hidden='true')
+          i.fa.fa-circle(aria-hidden='true', data-label='foreground color')
         #btnBColor.btn.smooth-color
-          i.fa.fa-circle-o(aria-hidden='true')
+          i.fa.fa-circle-o(aria-hidden='true', data-label='background color')
         #btnUpload.btn.smooth-color
-          i.fa.fa-cloud-upload(aria-hidden='true')
+          i.fa.fa-cloud-upload(aria-hidden='true', data-label='upload code')
         #btnDownload.btn.smooth-color
-          i.fa.fa-download(aria-hidden='true')
+          i.fa.fa-download(aria-hidden='true', data-label='download poster')
         #btnFBShare.btn.smooth-color
-          i.fa.fa-facebook(aria-hidden='true')
-      .left.corner.smooth-color
+          i.fa.fa-facebook(aria-hidden='true', data-label='facebook share')
+      .bio.bottom.smooth-color
         p.desc I am&nbsp;
-          span.name(contenteditable=true) Thomas
+          span.name(contenteditable=true, data-label='change to your name') Thomas
           | .
         p.desc I write&nbsp;
-          span.name(contenteditable=true) CoffeeScript
+          span.name(contenteditable=true, data-label='change to your language') CoffeeScript
           | .
-      .right.corner.smooth-color
+      .time.bottom.smooth-color
         p#txtDay.desc
         p#txtMonth.desc
         p#txtYear.desc

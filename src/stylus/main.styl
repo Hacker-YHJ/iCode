@@ -54,33 +54,31 @@ main
     width: calc(100% - 4em)
     height: calc(100% - 3em)
 
-p.desc
-  font-weight: bold
-  letter-spacing: .1em
-  line-height: 1em
-  white-space: no-wrap
-  font-size: 2em
-
-.left p.desc
-  font-weight: normal
-  font-size: 3em
-
-
 .control
   position: absolute
   display: flex
   bottom: 3.2em
   font-size: 3.2em
   border-left: solid .15em currentColor
+  margin-left: .15em
 
-.corner
+p.desc
+  letter-spacing: .1em
+  line-height: 1em
+  white-space: no-wrap
+  font-size: 2em
+
+.bio p.desc
+  font-size: 3em
+
+.bottom
   position: absolute
   bottom: 3em
 
-.right
+.time
+  font-weight: bold
   right: 4em
   text-align: right
-
 
 code
   display: inline-block
@@ -95,3 +93,47 @@ footer
   white-space: nowrap
   font-size: 1em
   bottom: 1em
+
+.fa
+  position: relative
+
+.fa::after
+  pointer-events: none
+  will-change: opacity
+  opacity: 0
+  content: attr(data-label)
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif
+  font-size: .4em
+  position: absolute
+  text-align: right
+  left: 0
+  width: 10em
+  border-bottom: 1px solid currentColor
+  transform: rotate(315deg)
+  white-space: nowrap
+  bottom: 7em
+  transition: opacity .4s ease-out
+
+span.name
+  position: relative
+
+span.name::after
+  pointer-events: none
+  will-change: opacity
+  opacity: 0
+  content: attr(data-label)
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif
+  font-size: .4em
+  line-height: 1.2em
+  position: absolute
+  text-align: right
+  letter-spacing: 0
+  white-space: nowrap
+  bottom: 0
+  width: 20em
+  border-bottom: 1px solid black
+  transition: opacity .4s ease-out
+
+.active .fa::after,
+.active span.name::after
+  opacity: 1

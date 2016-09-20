@@ -1,8 +1,9 @@
 require '../stylus/main'
 domready = require 'domready'
-punctuationize = require 'punctuationize'
+punctuationize = require './_punctuationize'
 domtoimage = require 'dom-to-image'
 firebase = require 'firebase'
+extToLang = require './_extToLang'
 
 FIREBASE_CONFIG =
   apiKey: 'AIzaSyBDdcex1yD9PgVg1V7z4B20kvEewahTU54'
@@ -17,6 +18,7 @@ $main = null
 $txtYear = null
 $txtMonth = null
 $txtDay = null
+$btnQuestion = null
 $btnUpload = null
 $btnDownload = null
 $btnFColor = null
@@ -26,6 +28,11 @@ $inputFColor = null
 $inputBColor = null
 $inputFile = null
 $code = null
+$control = null
+$bio = null
+$name = null
+$lang = null
+
 ratio = 1.413684211
 zSpace = '&#8203;'
 zNonBreakSpace = '&#8288;'
@@ -37,6 +44,7 @@ domready ->
   $txtYear = $id 'txtYear'
   $txtMonth = $id 'txtMonth'
   $txtDay = $id 'txtDay'
+  $btnQuestion = $id 'btnQuestion'
   $btnUpload = $id 'btnUpload'
   $btnDownload = $id 'btnDownload'
   $btnFColor = $id 'btnFColor'
@@ -45,6 +53,19 @@ domready ->
   $inputFile = $id 'inputFile'
   $inputFColor = $id 'inputFColor'
   $inputBColor = $id 'inputBColor'
+  $control = document.querySelector '.control'
+  $bio = document.querySelector '.bio'
+  [$name, $lang] = document.querySelectorAll 'span'
+
+  setTimeout( ->
+    $bio.classList.add 'active'
+    $control.classList.add 'active'
+  , 2000)
+
+  setTimeout( ->
+    $bio.classList.remove 'active'
+    $control.classList.remove 'active'
+  , 6000)
 
   $code = $tag('code')[0]
 
@@ -57,6 +78,7 @@ domready ->
   onBColorClick = $inputBColor.click.bind($inputBColor)
   onUploadClick = $inputFile.click.bind($inputFile)
 
+  $btnQuestion.addEventListener 'click', onQuestionClick
   $btnUpload.addEventListener 'click', onUploadClick
   $btnDownload.addEventListener 'click', onDownloadClick
   $btnFColor.addEventListener 'click', onFColorClick
@@ -66,7 +88,8 @@ domready ->
   $inputFColor.addEventListener 'change', onInputFColorChange
   $inputBColor.addEventListener 'change', onInputBColorChange
 
-  document.querySelectorAll('.btn').forEach (elem) ->
+  $btns = document.querySelectorAll('.btn')
+  [].forEach.call $btns, (elem) ->
     elem.addEventListener 'mouseenter', onBtnMouseEnter
     elem.addEventListener 'mouseleave', onBtnMouseLeave
 
@@ -99,6 +122,10 @@ createImgConfig = ->
       transform: 'translate(-25%, -25%) scale(2)'
       webkitFontSmoothing: 'subpixel-antialiased'
 
+onQuestionClick = ->
+  $bio.classList.toggle 'active'
+  $control.classList.toggle 'active'
+
 onDownloadClick = ->
   config = createImgConfig()
   domtoimage.toPng($main, config).then (dataUrl) ->
@@ -126,11 +153,17 @@ onInputChange = (input) ->
       nstr.push str[i * 10...(i + 1) * 10].split('').join(zNonBreakSpace)
     nstr = nstr.join zSpace
     $code.innerHTML = nstr
+    idx = file.name.lastIndexOf('.')
+
+    if idx isnt -1
+      ext = file.name[idx + 1..-1]
+      lang = extToLang ext
+      if lang.length > 0
+        $lang.textContent = lang
 
   reader.readAsText(file)
 
 onInputFColorChange = (e) ->
-  console.log e.target.value
   $main.style.color = e.target.value
 
 onInputBColorChange = (e) ->
@@ -145,7 +178,6 @@ onBtnMouseLeave = ->
   @style.removeProperty 'background-color'
 
 onFBShareClick = ->
-  [$name, $lang] = document.querySelectorAll 'span'
   picRef = storageRef.child "#{$name.textContent}-#{$lang.textContent}-#{Date.now()}.png"
   config = createImgConfig()
   domtoimage.toBlob($main, config)

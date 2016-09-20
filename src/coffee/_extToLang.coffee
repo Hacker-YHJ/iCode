@@ -1,0 +1,17 @@
+m =
+  c: 'C'
+  coffee: 'CoffeeScript'
+  cpp: 'C++'
+  cs: 'C#'
+  css: 'CSS'
+  html: 'HTML'
+  java: 'Java'
+  js: 'JavaScript'
+  json: 'JSON'
+  markdown: 'Markdown'
+  md: 'Markdown'
+  php: 'PHP'
+  py: 'Python'
+  rb: 'Ruby'
+module.exports = (ext) ->
+  if m.hasOwnProperty(ext) then return m[ext] else return ''

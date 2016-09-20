@@ -17,11 +17,11 @@ debugPlugins = [
 productionPlugins = [
   new ManifestPlugin()
   new webpack.BannerPlugin(banner)
-  # new webpack.optimize.UglifyJsPlugin({
-  #   sourceMap: false
-  #   compress: true
-  #   mangle: true
-  # })
+  new webpack.optimize.UglifyJsPlugin({
+    sourceMap: false
+    compress: true
+    mangle: true
+  })
 ]
 
 baseOption =
